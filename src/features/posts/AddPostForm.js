@@ -27,14 +27,15 @@ const AddPostForm = () => {
 
   const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
 
-  const usersOptions = users.map((user) => (
-    <option key={user.id} value={user.id}>
-      {user.name}
-    </option>
-  ));
+  // const usersOptions = users.map((user) =>
+  // <option key={user.id} value={user.id}>
+  //   {user.name}
+  // </option>
+  // );
 
   return (
     <section>
+      {console.log(users)}
       <h2>Add a New Post</h2>
       <form>
         <label htmlFor="postTitle">Post Title: </label>

@@ -22,7 +22,7 @@ const SinglePostPage = () => {
   return (
     <article>
       <h2>{post.title}</h2>
-      <p>{post.body}</p>
+      <p className="singlePostBody">{post.body}</p>
       <p className="postCredit">
         <Link to={`/post/edit/${post.id}`}>Edit Posts</Link>
         <PostAuthor userId={post.userId} />

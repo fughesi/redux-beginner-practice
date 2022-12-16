@@ -121,6 +121,11 @@ textarea {
   color: hsla(0, 0%, 0%, 0.75);
 }
 
+.singlePostBody {
+  /* word-break: break-all; */
+  overflow: scroll;
+}
+
 .excerpt {
   font-style: italic;
 }

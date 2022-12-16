@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectPostById, updatePost } from "./postsSlice";
+import { selectPostById, updatePost, deletePost } from "./postsSlice";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { selectAllUsers } from "../users/usersSlices";
+import { selectAllUsers } from "../users/usersSlice";
 
 const EditPostForm = () => {
   const { postId } = useParams();
@@ -27,7 +27,7 @@ const EditPostForm = () => {
 
   const onTitleChange = (e) => setTitle(e.target.value);
   const onContentChange = (e) => setContent(e.target.value);
-  const onAuthorChange = (e) => setUserId(e.target.value);
+  const onAuthorChange = (e) => setUserId(Number(e.target.value));
 
   const canSave =
     [title, content, userId].every(Boolean) && requestStatus === "idle";
@@ -67,6 +67,22 @@ const EditPostForm = () => {
     );
   });
 
+  const onDeletePostClicked = () => {
+    try {
+      setRequestStatus("pending");
+      dispatch(deletePost({ id: post.id })).unwrap();
+
+      setTitle("");
+      setContent("");
+      setUserId("");
+      navigate("/");
+    } catch (error) {
+      console.error("Could not delete post", error?.message);
+    } finally {
+      setRequestStatus("idle");
+    }
+  };
+
   return (
     <section>
       <h2>Edit Post</h2>
@@ -100,6 +116,14 @@ const EditPostForm = () => {
 
         <button onClick={onSavePostClicked} disabled={!canSave} type="button">
           Save Post
+        </button>
+        <button
+          onClick={onDeletePostClicked}
+          disabled={!canSave}
+          className="deleteButton"
+          type="button"
+        >
+          Delete Post
         </button>
       </form>
     </section>

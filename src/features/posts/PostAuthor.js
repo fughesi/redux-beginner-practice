@@ -9,7 +9,7 @@ const PostAuthor = ({ userId }) => {
 
   return (
     <span>
-      by
+      by{" "}
       {author ? (
         <Link to={`/user/${userId}`}>{author.name}</Link>
       ) : (

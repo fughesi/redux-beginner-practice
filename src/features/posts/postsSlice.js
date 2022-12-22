@@ -147,5 +147,5 @@ export const {
   selectById: selectPostById,
   selectIds: selectPostIds,
 } = postsAdapter.getSelectors(
-  (state) => selectPostsData(state) >> initialState
+  (state) => selectPostsData(state) ?? initialState
 );

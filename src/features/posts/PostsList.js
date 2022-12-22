@@ -4,7 +4,7 @@ import { selectPostIds } from "./postsSlice";
 import { useGetPostsQuery } from "./postsSlice";
 
 const PostsList = () => {
-  const { isLoading, isSuccess, isError, error } = useGetPostsQuery;
+  const { isLoading, isSuccess, isError, error } = useGetPostsQuery();
 
   const orderedPostIds = useSelector(selectPostIds);
 
@@ -18,8 +18,6 @@ const PostsList = () => {
   } else if (isError) {
     content = <p>{error}</p>;
   }
-
-  console.log(content);
 
   return <section>{content}</section>;
 };
